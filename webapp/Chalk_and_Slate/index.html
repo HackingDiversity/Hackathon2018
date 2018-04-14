@@ -5,21 +5,38 @@
             Chalk & Slate
         </title>
         <link rel="stylesheet" type="text/css" href="app.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     </head>
     <body>
-        <div id="logoContainer">
-            <a href="#home">
-                <img src="LOGOchalkAndSlate.png" alt="Chalk and Slate logo" height="60">
-            </a>
+        <div id="upperContainer col-sm-12">
+            <div id="logoContainer" class="col-sm-8 top-bottom-padding">
+                <a href="#home">
+                    <img src="LOGOchalkAndSlate.png" alt="Chalk and Slate logo" height="60">
+                </a>
+            </div>
+            <div id="userNameContainer" class="col-sm-3 top-bottom-padding">
+                Welcome, Sarah P.
+            </div>
         </div>
-        <ul>
+        <ul id="navbarList" class="linkList">
           <li><a href="#classes">Classes</a></li>
           <li><a href="#clinical">Clinical</a></li>
           <li><a href="#inbox">Inbox</a></li>
           <li><a href="#social">Social</a></li>
         </ul>
-        <div container="container">
-          <iframe src="https://calendar.google.com/calendar/embed?mode=WEEK&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=sp6fks2020%40gmail.com&amp;color=%231C887A&amp;ctz=America%2FNew_York" style="border-width:10" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
+        <div class="container col-sm-12">
+            <iframe src="https://calendar.google.com/calendar/embed?mode=WEEK&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=sp6fks2020%40gmail.com&amp;color=%231C887A&amp;ctz=America%2FNew_York" style="border-width:10" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
         </div>
+        <ul id="footerLinks" class="linkList">
+            <li><a href="#classes">Classes</a></li>
+            <li><a href="#calendar">Calendar</a></li>
+            <li><a href="#clinical">Clinical</a></li>
+            <li><a href="#inbox">Inbox</a></li>
+            <li><a href="#social">Social</a></li>
+            <li><a href="#profile">Profile</a></li>
+        </ul>
     </body>
 </html>

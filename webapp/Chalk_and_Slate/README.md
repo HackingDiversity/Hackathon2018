@@ -39,21 +39,21 @@ We chose to use Bootstrap in order to ensure a smooth transition from mobile to 
 
 ## Minimum Viable Product
 
-1. Complete Profile Page
+- Complete Profile Page
 
-  On this page the user will be able to change their password and update relevant information.
+  - On this page the user will be able to change their password and update relevant information.
 
-2. Inbox page
+- Inbox page
 
-  On this page the user will be able to send emails to other students in their courses as well as relevant university personnel such as professors, advisors, and teachers' assistants.
+  - On this page the user will be able to send emails to other students in their courses as well as relevant university personnel such as professors, advisors, and teachers' assistants.
 
-3. Clinical page
+- Clinical page
 
-  This page will contain information pertaining to a student's clinical rotations and relevant clinical assessment software. It will contain a breakdown of the patients this student has seen to as well as any files associated with those patients. All the data will be organized into a searchable database that is ported directly from the server of the hospital the student works at. This will allow for a seamless transition for the student from work to home.
+  - This page will contain information pertaining to a student's clinical rotations and relevant clinical assessment software. It will contain a breakdown of the patients this student has seen to as well as any files associated with those patients. All the data will be organized into a searchable database that is ported directly from the server of the hospital the student works at. This will allow for a seamless transition for the student from work to home.
 
-4. Social page
+- Social page
 
-  On this page the user can parse through a list of resources and clubs. A description of the club/resource will be provided as well as a link to further information. The user can search through this list at will as well as favorite specific clubs or resources they find appealing.
+  - On this page the user can parse through a list of resources and clubs. A description of the club/resource will be provided as well as a link to further information. The user can search through this list at will as well as favorite specific clubs or resources they find appealing.
 
 ## Future Iterations
 

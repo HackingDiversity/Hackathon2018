@@ -23,7 +23,7 @@ We chose to use Bootstrap in order to ensure a smooth transition from mobile to 
 
   - #### Health
 
-    - Each school can include resources to their on-campus centers, such as mental health counseling, the health center, sexual assault resources, and student-run hotlines. These resources will depend on each school but will also include national groups like RAIN and National Suicide Prevention Hotline.
+    - Each school can include resources to their on-campus centers, such as mental health counseling, the health center, sexual assault resources, and student-run hotlines. These resources will depend on each school but will also include national groups like RAIN and the National Suicide Prevention Hotline.
 
   - #### Academic & Career
 
@@ -35,7 +35,7 @@ We chose to use Bootstrap in order to ensure a smooth transition from mobile to 
 
   Including messages encouraging students to explore these resources.
 
-  - Reaching out for help can be tough. Our design will include simple, unintrusive messages on near the footer, encouraging students to reach out for resources if they feel overwhelmed, stressed, depressed or isolated. Links will direct students to the correct resources. (Note: Before going live, these messages would be reviewed by a professional).
+  - Reaching out for help can be tough. Our design will include simple, unintrusive messages near the footer, encouraging students to reach out for resources if they feel overwhelmed, stressed, depressed or isolated. Links will direct students to the correct resources. (Note: Before going live, these messages would be reviewed by a professional).
 
 ## Minimum Viable Product (MVP)
 To reach the MVP here are the items left to complete:
@@ -49,7 +49,7 @@ To reach the MVP here are the items left to complete:
 
 - Clinical page
 
-  - This page will contain information pertaining to a student's clinical rotations and relevant clinical assessment software. It will contain a breakdown of the patients this student has seen to as well as any files associated with those patients. All the data will be organized into a searchable database that is ported directly from the server of the hospital the student works at. This will allow for a seamless transition for the student from work to home.
+  - This page will contain information pertaining to a student's clinical rotations and relevant clinical assessment software. It will contain a breakdown of the patients this student has seen as well as any files associated with those patients. All the data will be organized into a searchable database that is pulled directly from the server of the hospital the student works at. To be clear this means the information will stay on the hospital server to avoid legal ramifications. This will allow for a seamless transition for the student from work to home.
 
 - Social page
 
@@ -59,7 +59,7 @@ To reach the MVP here are the items left to complete:
 
 1. Expand message inbox
 
-2. Give college-level admin a way to customize parts of the application specific for their school, such as setting the login image.
+2. Give college-level admins a way to customize parts of the application specific for their school, such as setting the login image.
 
 3. A page called "Evaluations" would be added that would contain a place for admins to create evaluations and students to take those evaluations of all the courses offered by the university and all the professors. This page would also contain class reviews written by the students that contain course descriptions from the student's point of view to help other students make decisions about classes. Students can search a list of courses organized by class title, department, and other such factors, as well as search a list of professors organized by name and department.
 
@@ -67,4 +67,4 @@ To reach the MVP here are the items left to complete:
 
 5. Diversity education could be further expanded in the application with the inclusion of tutorials and online classes dealing with matters of race, gender, ethnicity, religion, sexual orientation, and disabilities.
 
-6. Another page could be included called "Forums" that would include public and private message boards surrounding various student run topics on anything from classes to social activism and identity.
+6. Another page could be included called "Forums" that would include public and private message boards surrounding various student run topics on anything from classes to social activism and identity. These would be moderated to ensure all content is appropriate.

@@ -37,8 +37,8 @@ We chose to use Bootstrap in order to ensure a smooth transition from mobile to 
 
   - Reaching out for help can be tough. Our design will include simple, unintrusive messages on near the footer, encouraging students to reach out for resources if they feel overwhelmed, stressed, depressed or isolated. Links will direct students to the correct resources. (Note: Before going live, these messages would be reviewed by a professional).
 
-## Minimum Viable Product
-
+## Minimum Viable Product (MVP)
+To reach the MVP here are the items left to complete:
 - Complete Profile Page
 
   - On this page the user will be able to change their password and update relevant information.

@@ -21,17 +21,17 @@ We chose to use Bootstrap in order to ensure a smooth transition from mobile to 
 
   The Social tab of our dashboard will be filled with resources. We’ve elevated the importance of social, physical and mental health. Within the Social tab will be three kinds of resources.
 
-      - #### Health
+  - #### Health
 
-      Each school can include resources to their on-campus centers, such as mental health counseling, the health center, sexual assault resources, and student-run hotlines. These resources will depend on each school but will also include national groups like RAIN and National Suicide Prevention Hotline.
+    - Each school can include resources to their on-campus centers, such as mental health counseling, the health center, sexual assault resources, and student-run hotlines. These resources will depend on each school but will also include national groups like RAIN and National Suicide Prevention Hotline.
 
-      - #### Academic & Career
+  - #### Academic & Career
 
-      This will include resources that can help students with their academic life, such as peer tutoring and career focused clubs, like the American Medical Students Association.
+    - This will include resources that can help students with their academic life, such as peer tutoring and career focused clubs, like the American Medical Students Association.
 
-      - #### Social
+  - #### Social
 
-      Having a robust social life is important, even when very busy, and this tab will help students connect to others like them. This will include groups focused on gender, religion, race and sexual-orientation but also may be more broad. While the individual groups will vary by each school, this section can also include national groups like the American Medical Women’s Association.
+    - Having a robust social life is important, even when very busy, and this tab will help students connect to others like them. This will include groups focused on gender, religion, race and sexual-orientation but also may be more broad. While the individual groups will vary by each school, this section can also include national groups like the American Medical Women’s Association.
 
   Including messages encouraging students to explore these resources.
 
@@ -42,7 +42,7 @@ We chose to use Bootstrap in order to ensure a smooth transition from mobile to 
 1. Complete Profile Page
   - On this page, linked in both the name on the top left and the footer, the user will be able to change their password and update relevant information.
 
-2. Insert stuff here
+2. Inbox page, clinical page, social page
 
 ## Future Iterations
 

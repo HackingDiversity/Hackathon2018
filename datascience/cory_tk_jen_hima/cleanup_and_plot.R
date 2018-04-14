@@ -153,3 +153,19 @@ theme_few(22) + labs(x="Ascending Rank", y="Proportion of within Attribute ID\nw
 # Some classes have questions that are consistently answered incorrectly, but these questions are only
 # a small fraction of material within the course (corresponding to points further left on plot 2).
 
+# Do exams with more questions result in lower scores for students?
+# To answer, we did a sliding-window analysis of scores with a window size of 30 and step size of 5.
+
+dat.slidingWindow <- foreach(start=seq(0,max(dat.answers.wide$N_questions)-20, 3), .combine="rbind") %dopar% {
+    dat.sub <- dat.answers.wide[N_questions >= start & N_questions <= (start+19)][, list(meanPercentCorrect=mean(percentCorrect, na.rm=TRUE))]   
+    dat.sub[, windowStart := start]
+    return(dat.sub[])
+}
+
+g3 <- ggplot(data=dat.slidingWindow, mapping=aes(x=windowStart, y=meanPercentCorrect)) + geom_point() + theme_few(22) +
+labs(x="Number of questions on exam", y="Mean Percent Answers Correct", title="Test Scores as a Function of Number of Questions")
+
+# The data from the sliding window analysis shows that the average score changes with exam length (represented by number of questions).
+# Exams with intermediate numbers of questions tend to score the highest. Extremely long exams tend to have lower scores, as do very short exams.
+# We can only speculate why this is: Perhaps students neglect to study for exams if they know they will be short. Also, long exams could be more taxing, reducing performance.
+

@@ -30,6 +30,9 @@
         <div class="container col-sm-12">
             <iframe src="https://calendar.google.com/calendar/embed?mode=WEEK&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=sp6fks2020%40gmail.com&amp;color=%231C887A&amp;ctz=America%2FNew_York" style="border-width:10" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
         </div>
+        <div id="main-quote2">
+          <p id="main-quote"></p>
+        </div>
         <ul id="footerLinks" class="linkList">
             <li><a href="#classes">Classes</a></li>
             <li><a href="#calendar">Calendar</a></li>
@@ -44,8 +47,15 @@
 <script>
 $( document ).ready(function() {
     console.log( "ready!" );
+    console.log( quotes[0] );
+    var randomIndex = Math.floor(Math.random() * quotes.length);
+    var selectedQuote = quotes[randomIndex];
+    var quote_link = quote_links[randomIndex]
+    var result = selectedQuote.link(quote_link)
+    document.getElementById("main-quote").innerHTML = result;
+    console.log(selectedQuote);
 });
-$( document ).ready( getHelp );
+// $( document ).ready( getHelp );
 var quotes = [
   "Remember to schedule some 'me' time every week. Get resources on clubs and student activities to get you started.",
   "Stress is a normal part of student life, but that doesn't mean it can't get overwhelming. Find ideas on beating that stress.",
@@ -62,15 +72,15 @@ var quote_links = [
 ]
 
 // function to run loading do you need help content
-function getHelp(jQuery) {
-    var randomIndex = Math.floor(Math.random() * quotes.length);
-    var selectedQuote = quotes[randomIndex];
-    var quote_link = quote_link[randomIndex]
-    var result = selectedQuote.link(quote_link)
-    document.getElementById("quote-text").innerHTML = selectedQuote;
-    // $('#main-quote').text(selectedQuote);
-    console.log(selectedBG);
-    // $("body").css("background-image", "url('" + selectedBG + "')");
-}
-getHelp();
+// function getHelp(jQuery) {
+//     var randomIndex = Math.floor(Math.random() * quotes.length);
+//     var selectedQuote = quotes[randomIndex];
+//     var quote_link = quote_link[randomIndex]
+//     var result = selectedQuote.link(quote_link)
+//     document.getElementById("quote-text").innerHTML = selectedQuote;
+//     // $('#main-quote').text(selectedQuote);
+//     console.log(selectedBG);
+//     // $("body").css("background-image", "url('" + selectedBG + "')");
+// }
+// getHelp();
 </script>

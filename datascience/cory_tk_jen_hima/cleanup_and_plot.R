@@ -8,7 +8,9 @@ library(ggthemes)
 # import data
 dat <- fread('sample-data.csv', na.strings="NULL")
 
-# remove duplicated rows
+# Select and consolidate rows of data based on answer columns
+# We assumed information cannot be gleaned without question-answer information (ie CountA, Count B,...)
+# remove completey duplicated rows
 dat <- dat[!(duplicated(dat))]
 
 # remove rows where all question counts is NA
@@ -31,10 +33,12 @@ dat <- dat[! (AcceptableAnswers=="G" & is.na(CountG))]
 dat <- dat[! (AcceptableAnswers=="H" & is.na(CountH))]
 dat <- dat[! (AcceptableAnswers=="I" & is.na(CountI))]
 
-# Get total number of responses
+# We next added some columns of metrics to help with the analysis and data cleaning.
+# Get total number of responses in new Column
 dat[, totalResponses := apply(.SD, 1, function(x) sum(x, na.rm=TRUE)), .SDcols=c("CountA","CountB","CountC","CountD","CountE","CountF","CountG","CountH","CountI")]
 
-# Get corrected "Acceptable Answers" column by concatenating unique list of all acceptable answers, for ExamID, QuestionID, QuestionPartial combination
+# It appeared that some questions had multiple answers which was represented by duplicate rows with different answers but the same CountA,CountB,etc.
+# Make new corrected "Acceptable Answers" column by concatenating unique list of all acceptable answers, for ExamID, QuestionID, QuestionPartial combination
 dat[, AcceptableAnswersNew := paste(sort(unique(AcceptableAnswers)), collapse=""), by=list(ExamID, QuestionID, QuestionPartial)]
 
 # Remove old acceptable answers col
@@ -43,9 +47,13 @@ dat[,AcceptableAnswers := NULL]
 # Remove duplicate rows
 dat <- dat[!duplicated(dat)]
 
-# Create separate data.table to calculate percent correct answers
+# Creating metrics to analyze the cleaned data
+# We assumed the ExamID is the test given to a class of students
+# Each ExamID had multiple QuestionPartials which corresponded to the questions on the exam
+# Create separate data.table to calculate percent correct answers per QuestionPartial per exam
 dat.answers <- dat[,c("ExamID","QuestionID","QuestionPartial",paste("Count", c("A","B","C","D","E","F","G","H","I"), sep=""), "AcceptableAnswersNew")]
 
+# We are calculating the exam score per class (ExamID) based on the unique questions being equally weighted per exam.
 # Remove duplicate rows and set names
 dat.answers <- dat.answers[!duplicated(dat.answers)]
 setnames(dat.answers, c("ExamID","QuestionID","QuestionPartial",c("A","B","C","D","E","F","G","H","I"), "AcceptableAnswers"))
@@ -76,48 +84,54 @@ dat.answers.wide <- dat.answers.wide[! is.na(N_responses)]
 
 
 # CLEAN table dat.answers.wide now contains "ExamID" "QuestionID" "QuestionPartial" "Incorrect" "Correct" "percentCorrect" "N_responses"
-
+                             
 # Set keys for tables
 setkey(dat.answers.wide, ExamID, QuestionID, QuestionPartial)
 setkey(dat, ExamID, QuestionID, QuestionPartial)
 
-# Merge tables
+# Merge tables to add percentageCorrect for each QuestionID to original data table
 dat.merge <- merge(dat, dat.answers.wide)
 
+# We filtered out rows with QuestionPartial frequency of less than 20 (we assumed these rows had too low sample size)
 # Remove rows with < 20 responses
 dat.merge <- dat.merge[N_responses >= 20]
 dat.answers.wide <- dat.answers.wide[N_responses >= 20]
 
+# Calculate exam scores based on the number of Questions in each exam                              
 # Get number of questions in exam
 dat.answers.wide[, N_questions := .N, by=list(ExamID)]
 
-ggplot(data=dat.answers.wide, mapping=aes(x=N_questions, y=percentCorrect)) + geom_point()
-
+# Calculate median and quartiles for percentCorrect per QuestionID (regardless of ExamID)
 dat.answers.wide.ag <- dat.answers.wide[, list( .N,
                                q.25=quantile(percentCorrect, 0.25), 
                                q.50=quantile(percentCorrect, 0.50),
                                q.75=quantile(percentCorrect, 0.75)), by=QuestionID][order(q.50)]
-                               
+
+# Get ascending QuestionPartial order based on Median percentCorrect
 QuestionIDorder <- dat.answers.wide.ag$QuestionID
 
+# Set factor levels in ascending order
 dat.answers.wide.ag[, QuestionID := factor(QuestionID, levels=QuestionIDorder)]
 
+# Plot Median percentCorrect for QuestionPartials in AscendingOrder for QuestionPartials in at least 3 exams
+# We assumed QuestionPartials with less than 3 appearances on exams to be too few to estimate the Median
 g1 <- ggplot(data=dat.answers.wide.ag[N>=3], mapping=aes(x=factor(QuestionID), ymin=q.25, y=q.50, ymax=q.75)) + geom_point() + labs(x="Ascending Median Score", y="Median Score", title="Median score for questions in at least 3 exams") + theme_few(22) + theme(axis.title.x=element_blank(),
         axis.text.x=element_blank(),
         axis.ticks.x=element_blank())
 
-# Get questions that are present in at least 3 exams, with median score of less than 70%
+# Get questions that are present in at least 3 exams, with median score of less than 70% to identify Questions that are consistently answered incorrectly
 badQuestionsIDs <- sort(dat.answers.wide.ag[N>=3][q.50 <= 0.70]$QuestionID)
+  
+# Save a list of these questions that are consistently answered incorrectly
+write.table(badQuestionIDs, file="badQuestions.txt", col.name=FALSE, row.name=FALSE, quote=FALSE)
 
-# Get classes that contain these bad questions
+# Get classes (AttributeID) that contain these difficult questions
 N_badQuestions <- dat.merge[QuestionID %in% badQuestionsIDs][,list("N_bad"=.N), by=list(AttributeID, AttributeNamePartial)]
 N_allQuestions <- dat.merge[, list(N_total = .N), by=list(AttributeID,AttributeNamePartial)]
 
-# Set key for bad/all questions
+# Set key for bad/all questions so they can be merged back into orginal table containing all metadata
 setkey(N_badQuestions, AttributeID, AttributeNamePartial)
 setkey(N_allQuestions, AttributeID, AttributeNamePartial)
-
-# Merge and get proportion of questions that are often answered wrong
 dat.mergedQuestions <- merge(N_badQuestions, N_allQuestions)
 dat.mergedQuestions[, percentBad := N_bad / N_total]
 
@@ -126,10 +140,16 @@ dat.mergedQuestions <- dat.mergedQuestions[order(percentBad)]
 attributeOrder <- dat.mergedQuestions$AttributeNamePartial
 dat.mergedQuestions[, AttributeNamePartial := factor(AttributeNamePartial, levels=attributeOrder)]
 
-# Plot
+# Plot classes (AttributeID) in ascending order of proportion of bad (incorrectly answered) questions
+# Red label corresponds to AttributeID (which can be associated to a Class Name in AttributeNamePartial)
+# Black label corresponds to the number of questions consistently answered incorrectly across all exams
 g2 <- ggplot(data=dat.mergedQuestions, mapping=aes(x=indx, y=percentBad)) + geom_point() +
 geom_text(aes(x = indx, y = (percentBad+0.03), label=AttributeID), color = "red", angle = 90, hjust=0) + ylim(-0.1,1.2) +
 geom_text(aes(x = indx, y = (percentBad-0.03), label=N_bad), color = "black", angle = 90, hjust=1) +
 theme_few(22) + labs(x="Ascending Rank", y="Proportion of within Attribute ID\nwith median score < 70%", title="The most difficult courses based on consistently missed questions")
 
+# There are many questions that are answered incorrectly. Some of these questions make up a large 
+# proportion of a given class (AttributeID) material, corresponding to the points further right on plot 2.
+# Some classes have questions that are consistently answered incorrectly, but these questions are only
+# a small fraction of material within the course (corresponding to points further left on plot 2).
 

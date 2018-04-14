@@ -66,3 +66,13 @@ ul {
 #footerLinks > li a {
     display:grid;
 }
+
+#main-quote {
+    font-family: 'Open Sans', sans-serif;
+    color: #000000;
+    font-style: italic;
+    text-align: center;
+    padding: 35px 10px 0px 10px;
+    margin: 10px;
+    font-size: 1.3em;
+}

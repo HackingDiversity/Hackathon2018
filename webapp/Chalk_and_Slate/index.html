@@ -40,3 +40,37 @@
         </ul>
     </body>
 </html>
+
+<script>
+$( document ).ready(function() {
+    console.log( "ready!" );
+});
+$( document ).ready( getHelp );
+var quotes = [
+  "Remember to schedule some 'me' time every week. Get resources on clubs and student activities to get you started.",
+  "Stress is a normal part of student life, but that doesn't mean it can't get overwhelming. Find ideas on beating that stress.",
+  "Classes, homework, exams, rotation: it can feel like too much. We have resources if you just need some help.",
+  "Want to learn how to be an active bystander?",
+  "Whatever is going on, whatever you're going through, it's temporary. There are people who can help."
+]
+var quote_links = [
+  "http://www.virginia.edu/life/activities",
+  "https://medlineplus.gov/ency/article/001942.htm",
+  "https://adaa.org/",
+  "https://notonourgrounds.virginia.edu/bystander",
+  "https://suicidepreventionlifeline.org/"
+]
+
+// function to run loading do you need help content
+function getHelp(jQuery) {
+    var randomIndex = Math.floor(Math.random() * quotes.length);
+    var selectedQuote = quotes[randomIndex];
+    var quote_link = quote_link[randomIndex]
+    var result = selectedQuote.link(quote_link)
+    document.getElementById("quote-text").innerHTML = selectedQuote;
+    // $('#main-quote').text(selectedQuote);
+    console.log(selectedBG);
+    // $("body").css("background-image", "url('" + selectedBG + "')");
+}
+getHelp();
+</script>

@@ -1,9 +1,13 @@
-data <- read_csv("data.csv")
+data <- read_csv("/home/sleek_eagle/research/data.csv")
 exams <- data[data$ObjectTypeName == "Exam",]
 unique(exams$ExamID)
 
 
 questions <- data[data$ObjectTypeName == "Question",]
+#basic stats
+length(unique(questions$ExamID))
+length(unique(questions$QuestionID))
+
 
 #check for duplicated exam id and question ids*****STUCKS!!!!
 #dups <- questions[c('QuestionID','ExamID')]
@@ -35,7 +39,8 @@ questions$H <-'H'
 questions$I <-'I'
 questions$J <-'J'
 
-answers <-c(sum(questions$CountA),sum(questions$CountB),sum(questions$CountC),sum(questions$CountD),sum(questions$CountE),sum(questions$CountF),sum(questions$CountG),sum(questions$CountH),sum(questions$CountI),sum(questions$CountJ))
+ans <- questions[c("CountA","CountB","CountC","CountD","CountE","CountF","CountG","CountH","CountI","CountJ"),]
+answers <-c(sum(as.numeric(questions$CountA)),sum(as.numeric(questions$CountB)),sum(as.numeric(questions$CountC)),sum(as.numeric(questions$CountD)),sum(as.numeric(questions$CountE)),sum(as.numeric(questions$CountF)),sum(as.numeric(questions$CountG)),sum(as.numeric(questions$CountH)),sum(as.numeric(questions$CountI)),sum(as.numeric(questions$CountJ)))
 
 
 questions$A <- as.integer(as.logical(grepl('A',questions$AcceptableAnswers)))
@@ -77,15 +82,37 @@ questions$total <- questions$CountA + questions$CountB +questions$CountC +questi
 questions$incorrect <- questions$total - questions$correct
 questions$percentCorrect <- questions$correct / questions$total
 
-#frequency table of total answers
+ques<-questions
+hist(ques$percentCorrect,main = "Histogram of Correct Ratio of Questions",xlab = "Correct Ratio",col = "blue")
+
+#outliers
+outliers <- as.data.frame(questions[questions$total > 200,])
+outliers <- outliers[outliers$percentCorrect < 0.05,]
+dim(outliers)
+
+#aggregate with exam IDs 
+aggTotal <- aggregate(questions$total, by=list(Category=questions$ExamID), FUN=sum)
+aggcorrect <- aggregate(questions$correct, by=list(Category=questions$ExamID), FUN=sum)
+agg <- merge(x=aggTotal,y=aggcorrect,by.x = "Category",by.y = "Category")
+colnames(agg) <- c("ExamID","total","correct")
+agg$percentCorrect <- agg$correct/agg$total
+hist(agg$percentCorrect,main = "Histogram of Correct Ratio of Exams",xlab = "Correct Ratio",col = "red")
 
 
-
-
-
-myVector <- c(A = 1, B = 2, C = 3, D = 4)
-par(las = 3)
-barplot(rbind(myVector))
+ex <- merge(x = questions , y = agg, by.x = "ExamID",by.y = "ExamID")
+uex<- ex[unique(ex[,c("ExamID")]),]
+uex$DateStart <- as.Date(uex$DateStart)
+uex <- uex[!is.na(uex$DateStart), ]
+uex <- uex[,c("ExamID","DateStart","total.y","correct.y","percentCorrect.y")]
+colnames(uex)<-c("ExamID","DateStart","total","correct","percentCorrect")
+agTot <- aggregate(uex$total,by=list(Category=uex$DateStart), FUN=sum)
+agCor <- aggregate(uex$correct,by=list(Category=uex$DateStart), FUN=sum)
+mer <- merge(x = agTot , y = agCor, by.x = "Category",by.y = "Category")
+colnames(mer) <- c("Date","total","correct")
+mer$percent <- mer$correct/mer$total
+mer <- mer[order(mer$Date),]
+mer$percent <-as.numeric(mer$percent)
+mer <- as.data.frame(mer)
 
 
 

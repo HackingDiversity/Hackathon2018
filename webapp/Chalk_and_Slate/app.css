@@ -16,9 +16,6 @@ img {
 a {
     text-decoration: none;
 }
-h3 {
-    padding-left: 30px;
-}
 
 /* UPPER CONTAINER */
 #logoContainer {
@@ -226,6 +223,9 @@ span.psw a{
 }
 
 /* CLASS BOXES */
+#classPageHeader {
+    padding-left: 30px;
+}
 #classBoxContainer {
     padding-bottom: 20px;
     align-items: center;
@@ -268,5 +268,26 @@ span.psw a{
 }
 #verticalNavbar > li.active {
     background-color: #A5E2D4;
->>>>>>> Add class details
+}
+#iconMenu {
+    display: none;
+    float: right;
+    font-size: 1.5em;
+}
+@media (max-width: 767px) {
+    #verticalNavbar {
+        margin-bottom: 0;
+    }
+    #verticalNavbar > li {
+        display: none;
+    }
+    #iconMenu {
+        display: unset;
+    }
+    .classDetails {
+        padding-top: 0;
+    }
+}
+#classDetailContainer {
+    padding-right: 50px;
 }

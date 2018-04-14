@@ -169,3 +169,11 @@ labs(x="Number of questions on exam", y="Mean Percent Answers Correct", title="T
 # Exams with intermediate numbers of questions tend to score the highest. Extremely long exams tend to have lower scores, as do very short exams.
 # We can only speculate why this is: Perhaps students neglect to study for exams if they know they will be short. Also, long exams could be more taxing, reducing performance.
 
+# We were curious if certain questions types tended to be more difficult. We looked at the distribution of percent questions answered correctly
+# between foundation questiosn and application questions.
+
+g4 <- ggplot(data=dat.merge[AttributeTypeName=="Question Complexity"], mapping=aes(x=AttributeNamePartial, y=percentCorrect)) + geom_boxplot(outlier.alpha=0) +
+theme_few(18) + labs(x="Question Type", y="Percent Questions Answered Correctly", title="Application Questions are More Difficult\nthan Foundation Questions") +
+ylim(0.6,1)
+
+# plot g4 shows that application questions are slightly more difficult, having a lower distribution than foundation questions.

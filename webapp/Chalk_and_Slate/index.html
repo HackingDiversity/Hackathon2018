@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Chalk & Slate
+        </title>
+        <link rel="stylesheet" type="text/css" href="app.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+        <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <div class="row">
+            <div id="userNameContainer" class="col-sm-12">
+                <span>
+                    Welcome, Sarah P.
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div id="logoContainer" class="col-sm-12 top-bottom-padding">
+                <a href="index.html">
+                    <img src="LOGOchalkAndSlate.png" alt="Chalk and Slate logo" height="60">
+                </a>
+            </div>
+        </div>
+        <ul id="navbarList" class="linkList">
+          <li><a href="classes.html">Classes</a></li>
+          <li><a href="#">Clinical</a></li>
+          <li><a href="https://xd.adobe.com/view/482e6871-ca60-4284-57e5-a28522a6a491-3e1f/">Inbox</a></li>
+          <li><a href="https://xd.adobe.com/view/01cdd5da-f302-43a8-7f06-5124410813a4-77fc/">Social</a></li>
+        </ul>
+        <div class="container col-sm-12">
+            <iframe src="https://calendar.google.com/calendar/embed?mode=WEEK&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=sp6fks2020%40gmail.com&amp;color=%231C887A&amp;ctz=America%2FNew_York" style="border-width:10" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
+        </div>
+        <div id="main-quote2">
+          <p id="main-quote"></p>
+        </div>
+        <ul id="footerLinks" class="linkList">
+            <li><a href="classes.html">Classes</a></li>
+            <li><a href="index.html">Calendar</a></li>
+            <li><a href="#">Clinical</a></li>
+            <li><a href="https://xd.adobe.com/view/482e6871-ca60-4284-57e5-a28522a6a491-3e1f/">Inbox</a></li>
+            <li><a href="https://xd.adobe.com/view/01cdd5da-f302-43a8-7f06-5124410813a4-77fc/">Social</a></li>
+            <li><a href="#">Profile</a></li>
+        </ul>
+        <div class="row">
+            <div id="copyrightContainer" class="col-sm-12">
+                <span class="copyrightText">
+                    Copyright 2018 by Chalk & Slate.
+                </span>
+            </div>
+        </div>
+    </body>
+</html>
+
+<script>
+$( document ).ready(function() {
+    console.log( "ready!" );
+    console.log( quotes[0] );
+    var randomIndex = Math.floor(Math.random() * quotes.length);
+    var selectedQuote = quotes[randomIndex];
+    var quote_link = quote_links[randomIndex]
+    var result = selectedQuote.link(quote_link)
+    document.getElementById("main-quote").innerHTML = result;
+    console.log(selectedQuote);
+});
+var quotes = [
+  "Remember to schedule some 'me' time every week. Get resources on clubs and student activities to get you started.",
+  "Stress is a normal part of student life, but that doesn't mean it can't get overwhelming. Find ideas on beating that stress.",
+  "Classes, homework, exams, rotation: it can feel like too much. We have resources if you just need some help.",
+  "Want to learn how to be an active bystander?",
+  "Whatever is going on, whatever you're going through, it's temporary. There are people who can help."
+]
+var quote_links = [
+  "http://www.virginia.edu/life/activities",
+  "https://medlineplus.gov/ency/article/001942.htm",
+  "https://adaa.org/",
+  "https://notonourgrounds.virginia.edu/bystander",
+  "https://suicidepreventionlifeline.org/"
+]
+
+</script>

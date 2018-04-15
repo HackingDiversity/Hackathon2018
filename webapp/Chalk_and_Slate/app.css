@@ -1,0 +1,293 @@
+body {
+    margin: 0;
+    background-color: #FCFCFC;
+}
+
+ul {
+    list-style-type: none;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+}
+img {
+    display: block;
+    margin: auto;
+}
+a {
+    text-decoration: none;
+}
+
+/* UPPER CONTAINER */
+#logoContainer {
+    display: inline-block;
+}
+#userNameContainer {
+    display: inline-block;
+    text-align: right;
+    vertical-align: middle;
+}
+#userNameContainer span {
+    padding-top: 10px;
+    padding-right: 10px;
+}
+.top-bottom-padding {
+    padding: 10px 0px;
+}
+
+/* NAVBAR/FOOTER UNIVERSAL STYLES */
+.linkList > li a {
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    font-weight: bold;
+}
+
+.linkList > li a:hover {
+    text-decoration: none;
+}
+
+/* NAVBAR LINKS */
+#navbarList {
+    border: 1px solid #424242;
+    text-align: center;
+}
+#navbarList > li {
+    display: inline-block;
+    margin-left: -4px;
+}
+#navbarList > li a {
+    color: #424242;
+}
+#navbarList > li.active {
+    background-color: #424242;
+    color: #A5E2D4;
+}
+#navbarList > li.active a {
+    color: #A5E2D4;
+}
+#navbarList > li a:hover {
+    color: #A5E2D4;
+    background-color: #111;
+}
+
+/* FOOTER LINKS */
+#footerLinks {
+    margin-bottom: 0;
+    background-color: #424242;
+}
+#footerLinks > li a {
+    color: #FFF;
+}
+
+/* BODY CONTAINER */
+.container {
+    padding: 20px 0px;
+    margin: 0;
+    max-width: 100%;
+}
+
+/* QUOTES */
+#main-quote {
+    color: #000000;
+    font-style: italic;
+    text-align: center;
+    padding: 0px 0px 10px 0px;
+    margin: 0px;
+    font-size: 1.3em;
+    line-height: 1em;
+}
+
+#main-quote p {
+    color: #000000;
+    font-style: italic;
+    text-align: center;
+    padding: 0px 0px 0px 0px;
+    margin: 0px;
+    font-size: 1.3em;
+}
+
+#main-quote a {
+    color: #000000;
+    font-style: italic;
+    text-align: center;
+    padding: 0px 0px 0px 0px;
+    margin: 10px;
+    font-size: .7em;
+}
+
+/* COPYRIGHT */
+#copyrightContainer {
+    background-color: #424242;
+    color: #FFF;
+    padding: 20px 0px;
+}
+.copyrightText {
+    display: block;
+    text-align: center;
+    font-style: italic;
+    font-size: .8em;
+}
+
+/* Full-width inputs */
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 5px;
+
+}
+
+/* Set a style for all buttons */
+
+/* Add a hover effect for buttons */
+cancelbutton:hover {
+    opacity: 0.8;
+}
+
+/* Extra style for the cancel button (red) */
+.cancelbtn {
+    background-color: #ff0000;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    width: auto;
+    padding: 10px 18px;
+}
+
+.loginbtn {
+  color: #424242;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: 1px solid #424242;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 100%;
+  width: auto;
+  padding: 10px 18px;
+  background-color: #a5e2d4;
+
+}
+
+.rememberlabel {
+  padding-top: 3%;
+  padding-right: 5%;
+  float: right;
+}
+
+/* Add padding to containers */
+.container-login {
+    width: 600px;
+    padding-top: 10%;
+    padding-right: 20px;
+    padding-bottom: 0px;
+    padding-left: 20px;
+    margin: 0 auto;
+
+}
+
+.container-login3 {
+    width: 600px;
+    padding-top: 10px;
+    padding-right: 20px;
+    padding-bottom: 0px;
+    padding-left: 20px;
+    margin: 0 auto;
+    border-radius: 5px;
+    background-color: rgba(220, 220, 220, .8)
+}
+
+.bodylogin {
+   background-image: url("00_Heal_BattleBuilding_CoverImage1.jpg");
+   background-color: #cccccc;
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
+}
+
+/* The "Forgot password" text */
+span.psw {
+    float: right;
+    padding-top: 3%;
+    padding-right: 2%;
+}
+
+span.psw a{
+    color: #266868;
+}
+
+/* CLASS BOXES */
+#classPageHeader {
+    padding-left: 30px;
+}
+#classBoxContainer {
+    padding-bottom: 20px;
+    align-items: center;
+    justify-content: center;
+}
+.classBox {
+    height: 50px;
+    margin-top: 15px;
+    padding-top: 10px;
+    border: 1px solid #424242;
+    border-radius: 4px;
+    margin-left: 50px;
+    margin-right: 50px;
+    text-align: center;
+    background-color: #F2F2F2;
+    -webkit-box-shadow: 6px 6px 43px -12px rgba(0,0,0,0.2);
+    -moz-box-shadow: 6px 6px 43px -12px rgba(0,0,0,0.2);
+    box-shadow: 6px 6px 43px -12px rgba(0,0,0,0.2);
+}
+.classBox:hover {
+    background-color: #424242;
+}
+.classBox:hover > span a {
+    color: #A5E2D4;
+    text-decoration: none;
+    display: block;
+}
+.classBox span {
+    display: block;
+    font-size: 1.1em;
+    color: #424242;
+}
+.classBox > span a {
+    color: #424242;
+}
+
+/* CLASS DETAIL PAGE */
+#verticalNavbar > li a {
+    color: #424242;
+}
+#verticalNavbar > li.active {
+    background-color: #A5E2D4;
+}
+#iconMenu {
+    display: none;
+    float: right;
+    font-size: 1.5em;
+}
+@media (max-width: 767px) {
+    #verticalNavbar {
+        margin-bottom: 0;
+    }
+    #verticalNavbar > li {
+        display: none;
+    }
+    #iconMenu {
+        display: unset;
+    }
+    .classDetails {
+        padding-top: 0;
+    }
+}
+#classDetailContainer {
+    padding-right: 50px;
+}

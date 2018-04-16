@@ -29,77 +29,29 @@ server.post('/api/messages', connector.listen());
 * ---------------------------------------------------------------------------------------- */
 
 var tableName = 'botdata';
-//var azureTableClient = new botbuilder_azure.AzureTableClient(tableName, process.env['AzureWebJobsStorage']);
-//var tableStorage = new botbuilder_azure.AzureBotStorage({ gzipData: false }, azureTableClient);
+var azureTableClient = new botbuilder_azure.AzureTableClient(tableName, process.env['AzureWebJobsStorage']);
+var tableStorage = new botbuilder_azure.AzureBotStorage({ gzipData: false }, azureTableClient);
 
 // Create your bot with a function to receive messages from the user
 var bot = new builder.UniversalBot(connector);
-//bot.set('storage', tableStorage);
-var hours = []
-var times = []
-var memories = []
-var sleep_message = ''
-var mom_message = ''
-var eat_message = ''
+bot.set('storage', tableStorage);
+
 bot.dialog('/', [
-    
     function (session) {
-        builder.Prompts.text(session, "Hi! Tell me about something you accomplished or something good that happened today."); 
+        builder.Prompts.text(session, "Hello... What's your name?");
     },
     function (session, results) {
-        var r = results.response;
-        r = replace("/I|i/", "you"); // doesn't work
-        r = r.replace("/my|My/", "your");
-        r = r.replace("/mine|Mine/", "yours");
-        r = r.replace("/I'm|i'm/", "you're");
-        memories.push(r);
-        builder.Prompts.number(session, "How many hours did you sleep last night?");
+        session.userData.name = results.response;
+        builder.Prompts.number(session, "Hi " + results.response + ", How many years have you been coding?"); 
     },
     function (session, results) {
-        hours.push(results.response);
-        builder.Prompts.choice(session, "Have you called your mom today?", ["Yes", "No"]);
+        session.userData.coding = results.response;
+        builder.Prompts.choice(session, "What language do you code Node using?", ["JavaScript", "CoffeeScript", "TypeScript"]);
     },
-    function(session, results){
-        times.push(results.response);
-
-        if (results.response.entity == 'Yes')
-        {
-            mom_message = "Good for you. Keeping in touch with family and friends can help you manage stress. "
-        }
-        else {
-            mom_message = "Your mom probably misses you... Give her a call :) "
-        }
-        builder.Prompts.number(session, mom_message + "How many meals have you eaten in the past day?");
-    }, 
     function (session, results) {
-        if(results.response < 3)
-        {
-            eat_message = "Try and set aside time to sit down and eat three meals a day. "
-        }
-        else if(results.response > 3) {
-            eat_message = "Good job. Just remember not to stress eat. "
-        } else {
-            eat_message = "Eating three meals a day can keep you energized. Good job!"
-        }
-
-        var total = 0
-        for(var j = 0; j< hours.length; j++){
-            total = total + hours[j];
-        }
-        var average = total/hours.length
-
-        if(average < 7) {
-            sleep_message = "Try and get some more sleep! "
-        } else if(average > 9) {
-            sleep_message = "You might be sleeping too much! "
-        } else {
-            sleep_message = "Good job! "
-        }
-        session.send(eat_message);
-        session.send("Your sleep insights: You sleep for an average of  " + Math.floor(average*100)/100 + 
-                    " hours each night. " + sleep_message + "Healthy adults need 7-9 hours of sleep nightly to feel rested. ")
-        if(memories.length > 1) {
-            session.send("Throwback: do you remember the time " + memories[Math.floor(Math.random()*(memories.length-1))] + "?");
-        }
+        session.userData.language = results.response.entity;
+        session.send("Got it... " + session.userData.name + 
+                    " you've been programming for " + session.userData.coding + 
+                    " years and use " + session.userData.language + ".");
     }
 ]);
